@@ -1,6 +1,5 @@
 var http = require("http");
 var url = require("url");
-var query = require("querystring");
 
 // 不打包到公共包
 var noModules = ['@babel/runtime-corejs3', '@babel/runtime'];

@@ -599,7 +599,7 @@ class Action extends React.Component<Props, State> {
                 l.push({id: 3, t: '看Ta的日程'});
             }
         }
-        //我向Ta公开 可以: 我不向他公开 
+        //我向Ta公开 可以: 我不向他公开
         if (pthis.state.relationForOther.publicRelationType == Constant.RelationType.VIEW_ME) {
             l.push({id: 2, t: '不向Ta公开'});
         }
@@ -710,7 +710,7 @@ class Action extends React.Component<Props, State> {
             isShowAdd: true
         }, () => {
             $(document).off('click');
-            $(document).on('click', (e: JQuery.Event) => {
+            $(document).on('click', (e: JQuery.ClickEvent) => {
                 if ($(e.target).hasClass('add')) {
                     return;
                 }
