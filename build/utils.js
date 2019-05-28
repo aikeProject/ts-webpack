@@ -1,12 +1,16 @@
 var http = require("http");
 var url = require("url");
 var query = require("querystring");
+
+// 不打包到公共包
+var noModules = ['@babel/runtime-corejs3', '@babel/runtime'];
+
 module.exports = {
     objToList: function (obj) {
         let list = [];
         for (let key in obj) {
             // @babel/runtime 不能作为公共模块打包
-            if (key !== '@babel/runtime') {
+            if (noModules.indexOf(key) == -1) {
                 list.push(key);
             }
         }
@@ -14,8 +18,7 @@ module.exports = {
     },
     runServer: function (port) {
         var mock = {};
-        mock.util = {
-        };
+        mock.util = {};
         mock.config = {
             baseModel: function (model) {
                 return {
@@ -92,14 +95,13 @@ module.exports = {
             setTimeout(function () {
                 if (returnModel.error) {
                     callback(mock.config.baseModelError());
-                }
-                else {
+                } else {
                     callback(mock.config.baseModel(returnModel.data));
                 }
             }, mock.config.delay());
         };
         var server = function (request, response) {
-            response.writeHead(200, { "Content-Type": "application/json:; charset=UTF-8" });
+            response.writeHead(200, {"Content-Type": "application/json:; charset=UTF-8"});
             if (request.method == "GET") {
                 var params = [];
                 var requestInfo = url.parse(request.url, true);
