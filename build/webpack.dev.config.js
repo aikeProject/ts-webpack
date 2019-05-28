@@ -1,13 +1,7 @@
 const path = require("path");
-const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const gulp = require('gulp');
 
 const webpackDevConfig = require("./webpack.base.config");
-const dependencies = require("../package").dependencies;
 const utils = require("./utils");
 
 utils.runServer(7008);
