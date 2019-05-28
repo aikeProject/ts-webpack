@@ -1,0 +1,270 @@
+@import "../../style/functions";
+
+._PageAddTask {
+  display: block;
+
+  .task-subject {
+    background: #ffffff;
+  }
+
+  .subject-input {
+    display: inline-block;
+    font-size: 0.28rem;
+    width: 5.3rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .placeholder-txt {
+    color: #CCCCCC;
+    font-size: 0.28rem;
+    width: 5.3rem;
+    position: absolute;
+    top: .25rem;
+    left: 1.9rem;
+  }
+
+  .subject-wrapper {
+    position: relative;
+  }
+
+  /* 上传附件 */
+
+  .upload_btn {
+    font-size: .3rem;
+    color: #707070;
+    line-height: .92rem;
+    background-image: url("../../images/icon_fj.png");
+    background-repeat: no-repeat;
+    background-size: .34rem auto;
+    background-position: .3rem center;
+    padding-left: .75rem;
+    background-color: #fff;
+    position: relative;
+
+    .img_up {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 5;
+
+      .upload_ipt {
+        display: block;
+        width: 100%;
+        height: .92rem;
+        opacity: 0;
+      }
+    }
+  }
+
+  /* 附件列表 */
+
+  .upload_box {
+    background-color: #fff;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    position: relative;
+
+    &:before {
+      left: .3rem !important;
+    }
+
+    .file_item {
+      position: relative;
+      width: 6.9rem;
+      height: 1.2rem;
+      background: #F9F9F9;
+      border: 1px solid #EAEAEA;
+      border-radius: .03rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+
+      .img {
+        width: .8rem;
+        height: .8rem;
+        margin-left: .2rem;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .f_text {
+        flex: 1;
+        margin-left: .3rem;
+
+        .name {
+          font-size: .28rem;
+          color: #464646;
+          line-height: .4rem;
+          width: 4.6rem;
+          border-right: solid 1px #D7D7D7;
+        }
+      }
+
+      .del {
+        position: absolute;
+        width: .68rem;
+        height: .68rem;
+        background-image: url(../../images/dl_del.png);
+        background-size: .34rem .34rem;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        top: .25rem;
+        right: .23rem;
+      }
+
+      & + .file_item {
+        margin-top: .2rem;
+      }
+    }
+  }
+
+  /* 图片预览 */
+
+  .img_bg {
+    position: fixed;
+    height: 100%;
+    width: 7.5rem;
+    top: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, .6);
+    display: none;
+
+    .inner_img {
+      position: absolute;
+      width: 80%;
+      left: 10%;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+      z-index: 100;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  /* 优先级 */
+
+  .sbtn {
+    height: 0.5rem;
+    width: 0.84rem;
+    box-sizing: border-box;
+    text-align: center;
+    margin-right: 0.3rem;
+    font-style: normal;
+    border: 1px solid #E3E3E6;
+    color: #959595;
+    display: inline-block;
+    border-radius: 2px;
+
+    > span {
+      font-size: 0.3rem;
+    }
+
+    &.normal {
+      color: #464646;
+      border: 1px solid #E3E3E6;
+    }
+
+    &.low {
+      color: #FFB000;
+      border: 1px solid #FFB000;
+    }
+
+    &.high {
+      color: #F00;
+      border: 1px solid #F00;
+    }
+  }
+
+  /* 抄送提醒 */
+
+  .copy-tip {
+    font-size: .26rem;
+    color: #959595;
+    letter-spacing: 0;
+    padding: .1rem .3rem .3rem;
+  }
+
+  /* 抄送人员列表 */
+
+  .copy-content {
+    background: #ffffff;
+    padding: .4rem .3rem;
+    font-size: .3rem;
+    color: #959595;
+    letter-spacing: 0;
+    position: relative;
+  }
+
+  .send-btn-wrapper {
+    height: 1.2rem;
+  }
+
+  .send-btn {
+    background: #FFFFFF;
+    width: 7.5rem;
+    box-sizing: border-box;
+    height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  .btn-add {
+    .g-btn(
+      @width: 6.9rem,
+      @height: .84rem,
+      @border-radius: .1rem,
+      @color: #FFF
+    )
+  }
+
+  .PageContactsWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 150%;
+    background-color: #fff;
+
+    .cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 8;
+      width: 100%;
+      height: 100%;
+      background: #FFF;
+      display: none;
+    }
+  }
+
+  /* 截止时间 */
+
+  .stopTime {
+    border: none;
+    font-size: .3rem;
+    color: #464646;
+    letter-spacing: 0;
+    display: block;
+    box-sizing: border-box;
+    padding: .3rem 0;
+    line-height: .38rem;
+    background: 0 0;
+    text-align: right;
+  }
+}

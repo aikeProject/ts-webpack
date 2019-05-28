@@ -1,0 +1,192 @@
+._PageColleageList {
+  display: block;
+
+  .ma20 {
+    position: relative;
+    height: 0.2rem;
+    background: #F5F5F5;
+  }
+
+  .tab_btns_wrapper {
+    height: 1rem;
+  }
+
+  .all_people {
+    margin-top: 0.2rem;
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+
+    .one {
+      font-size: 0;
+      position: relative;
+
+      .title {
+        display: flex;
+        align-items: center;
+        padding-left: 0.3rem;
+        position: relative;
+        background: #FFF;
+        height: 1.1rem;
+
+        .avatar {
+          height: 0.7rem;
+          width: 0.7rem;
+          border-radius: 0.04rem;
+        }
+
+        .desc {
+          display: inline-block;
+          padding-left: 0.25rem;
+          font-size: 0.26rem;
+          color: #959595;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          .a {
+            font-size: 0.30rem;
+            color: #464646;
+            letter-spacing: 0;
+            padding-right: 0.2rem;
+          }
+        }
+
+        .top_btn {
+          position: absolute;
+          height: 0.38rem;
+          width: 0.38rem;
+          right: 0.3rem;
+          top: 0.36rem;
+        }
+      }
+
+      ul {
+        padding: 0;
+        margin: 0;
+        background: #FFF;
+
+        .item {
+          padding: 0.3rem;
+          padding-left: 0;
+          margin-left: 0.3rem;
+          position: relative;
+
+          .a {
+            font-size: 0.28rem;
+            color: #959595;
+            letter-spacing: 0;
+            line-height: 0.4rem;
+          }
+
+          .b {
+            font-size: 0.32rem;
+            color: #464646;
+            text-align: left;
+            line-height: 0.46rem;
+            margin-top: 0.12rem;
+          }
+
+          .c {
+            font-size: 0.28rem;
+            color: #959595;
+            letter-spacing: 0;
+            margin-top: 0.1rem;
+            line-height: 0.4rem;
+          }
+        }
+
+        .more {
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 1rem;
+          padding-left: 0.3rem;
+
+          > span {
+            font-size: 0.28rem;
+            color: #467DB9;
+          }
+
+          > i {
+            height: 1rem;
+            width: 1rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: url(./images/pickerDown.png) no-repeat;
+            background-size: 0.24rem 0.14rem;
+            background-position: center center;
+            cursor: pointer;
+          }
+        }
+
+        .empty_list {
+          height: 2.06rem;
+          position: relative;
+          text-align: center;
+          display: flex;
+          font-size: 0.28rem;
+          color: #959595;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .no_data {
+    font-size: 0;
+    text-align: center;
+
+    > img {
+      width: 1.8rem;
+      height: 1.4rem;
+      margin-bottom: 0.49rem;
+      margin-top: 1.8rem;
+    }
+
+    > p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .t1 {
+      font-family: PingFangSC-Regular;
+      font-size: 0.30rem;
+      color: #464646;
+      letter-spacing: 0;
+    }
+
+    .t2 {
+      font-family: PingFangSC-Regular;
+      font-size: 0.28rem;
+      color: #959595;
+      letter-spacing: 0;
+      margin-top: 0.1rem;
+    }
+  }
+
+  .aaaa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 150%;
+    background-color: #fff;
+
+    .cover {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 8;
+      width: 100%;
+      height: 100%;
+      background: #FFF;
+      display: none;
+    }
+  }
+}

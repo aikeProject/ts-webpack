@@ -1,0 +1,354 @@
+@import "../../style/functions";
+
+._PageTaskDetail {
+  display: block;
+
+  .ipt_line:before {
+    width: 7.5rem;
+  }
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .task-descript {
+    padding: .24rem .3rem .32rem 0;
+    margin: 0;
+    margin-left: .3rem;
+    position: relative;
+    font-size: .3rem;
+    color: #464646;
+    letter-spacing: 0;
+    line-height: .44rem;
+    background: #ffffff;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    *word-wrap: break-word;
+    *white-space: normal;
+  }
+
+  /* 图片预览 */
+
+  .img_bg {
+    position: fixed;
+    height: 100%;
+    width: 7.5rem;
+    top: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, .6);
+    display: none;
+
+    .inner_img {
+      position: absolute;
+      width: 80%;
+      left: 10%;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+      z-index: 100;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  .color-detail {
+    font-size: .3rem;
+    color: #464646;
+    letter-spacing: 0;
+  }
+
+  .task-people {
+    padding: .4rem .3rem;
+    background: #ffffff;
+    position: relative;
+    font-size: .3rem;
+    color: #959595;
+    letter-spacing: 0;
+    line-height: .5rem;
+  }
+
+  .task-assignment {
+    position: relative;
+  }
+
+  .task-open-close {
+    background: #FFFFFF;
+    height: .92rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .28rem;
+    color: #467DB9;
+    letter-spacing: 0;
+
+    > span {
+      padding-right: .1rem;
+    }
+  }
+
+  .leaving-message {
+    position: relative;
+    background: #ffffff;
+
+    .leaving-message-item {
+      padding: .3rem .24rem .3rem .3rem;
+      display: flex;
+      position: relative;
+
+      .img {
+        flex: 0 0 .8rem;
+        width: .8rem;
+        height: .8rem;
+        overflow: hidden;
+        border: .01rem solid #D8D8D8;
+        background: #FFFFFF;
+        border-radius: 50%;
+        margin-right: .2rem;
+
+        > img {
+          display: block;
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      .left {
+        flex: 1;
+
+        .user-detail {
+          display: flex;
+          justify-content: space-between;
+          padding-right: .24rem;
+
+          > span:nth-of-type(1) {
+            font-size: .3rem;
+            color: #464646;
+            letter-spacing: 0;
+          }
+
+          > span:nth-of-type(2) {
+            font-size: .26rem;
+            color: #959595;
+            letter-spacing: 0;
+          }
+        }
+
+        .task-role {
+          font-size: .26rem;
+          color: #959595;
+          letter-spacing: 0;
+          padding-top: .05rem;
+        }
+      }
+    }
+
+    .leaving-message-content {
+      padding-bottom: .2rem;
+      padding-top: .2rem;
+      padding-right: .3rem;
+      position: relative;
+
+      .title {
+        font-size: .3rem;
+        color: #464646;
+        letter-spacing: 0;
+      }
+
+      .time {
+        display: flex;
+        justify-content: space-between;
+
+        .time-txt {
+          font-size: .24rem;
+          color: #959595;
+          letter-spacing: 0;
+          padding-top: .1rem;
+        }
+
+        .del {
+          font-size: .24rem;
+          color: #467DB9;
+          letter-spacing: 0;
+        }
+      }
+    }
+  }
+
+  .task-transition {
+    transition: all .2s ease-in;
+    overflow: hidden;
+  }
+
+  .hide-task {
+    height: 0;
+  }
+
+  .show-task {
+    height: auto;
+  }
+
+  .task-btn-wrapper {
+    height: 1.2rem;
+    width: 7.5rem;
+    position: relative;
+
+    .task-btn {
+      height: 1.2rem;
+      position: fixed;
+      bottom: 0;
+      width: 7.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      background: #FFFFFF;
+
+      .btn-1 {
+        .g-btn(
+          @width: 3rem,
+          @height: .74rem,
+          @border-radius: .06rem,
+          @color: #467DB9,
+          @border: .02rem solid #3279C0,
+          @background: #FFF
+        )
+      }
+
+      .btn-2 {
+        .g-btn(
+          @width: 3rem,
+          @height: .74rem,
+          @border-radius: .06rem,
+          @color: #FFF
+        )
+      }
+
+      .btn-3 {
+        .g-btn(
+          @width: 2rem,
+          @height: .74rem,
+          @border-radius: .06rem,
+          @color: #467DB9,
+          @border: .02rem solid #3279C0,
+          @background: #FFF
+        )
+      }
+
+      .btn-4 {
+        .g-btn(
+          @width: 2rem,
+          @height: .74rem,
+          @border-radius: .06rem,
+          @color: #467DB9,
+          @border: .02rem solid #3279C0,
+          @background: #FFF
+        )
+      }
+
+      .btn-5 {
+        .g-btn(
+          @width: 2rem,
+          @height: .74rem,
+          @border-radius: .06rem,
+          @color: #FFF
+        )
+      }
+
+      .btn-message {
+        .g-btn(
+          @width: 6.5rem,
+          @height: .74rem,
+          @border-radius: .06rem,
+          @color: #fff
+        )
+      }
+    }
+  }
+
+  /* 附件列表 */
+
+  .upload_box {
+    background-color: #fff;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    position: relative;
+
+    .file_item {
+      position: relative;
+      width: 6.9rem;
+      height: 1.2rem;
+      background: #F9F9F9;
+      border: 1px solid #EAEAEA;
+      border-radius: .03rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+
+      .img {
+        width: .8rem;
+        height: .8rem;
+        margin-left: .2rem;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .f_text {
+        flex: 1;
+        margin-left: .3rem;
+
+        .name {
+          font-size: .28rem;
+          color: #464646;
+          line-height: .4rem;
+          width: 4.6rem;
+          //border-right: solid 1px #D7D7D7;
+        }
+      }
+
+      .del {
+        position: absolute;
+        width: .68rem;
+        height: .68rem;
+        background-image: url(../../images/dl_del.png);
+        background-size: .34rem .34rem;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        top: .25rem;
+        right: .23rem;
+      }
+
+      & + .file_item {
+        margin-top: .2rem;
+      }
+    }
+  }
+
+  .task-none {
+    text-align: center;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > img {
+      width: 1.8rem;
+      display: block;
+    }
+
+    .txt {
+      padding-top: .49rem;
+      font-size: .3rem;
+      color: #464646;
+      letter-spacing: 0;
+      text-align: center;
+    }
+  }
+}

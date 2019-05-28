@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title">帮助中心</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="./plugins/jquery-2.1.4.min.js"></script>
+    <script src="./plugins/ajaxMapping.js"></script>
+    <script src="./plugins/G.js"></script>
+    <script>var fsz = ($(window).width() / 7.5 * 1).toFixed(2) > 60 ? 60 : ($(window).width() / 7.5 * 1).toFixed(2);
+        document.getElementsByTagName('html')[0].style['font-size'] = fsz + 'px';</script>
+</head>
+<style type="text/css">
+    .help {
+        padding: 0;
+        margin: 0;
+        padding-bottom: 0;
+        background-color: #fff;
+        padding-bottom: 2.4rem;
+    }
+
+    .help .ma {
+        height: 0.2rem;
+        background: #EEE;
+        position: relative;
+    }
+
+    .help .cxt {
+        padding: 0 0.44rem;
+    }
+
+    .help .cxt .title {
+        line-height: 0.42rem;
+        font-size: 0.3rem;
+        color: #4677ae;
+        padding: 0.3rem 0;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .help .cxt .title2 {
+        line-height: 0.42rem;
+        font-size: 0.28rem;
+        color: #464646;
+        padding: 0.1rem 0;
+    }
+
+    .help .cxt .p {
+        color: #959595;
+        padding: 0;
+        font-size: 0.28rem;
+        padding-left: 0.22rem;
+        padding-bottom: 0.3rem;
+        line-height: 0.4rem;
+    }
+
+    .help_nav {
+        position: fixed;
+        width: 100%;
+        height: 2.4rem;
+        left: 0;
+        bottom: 0;
+    }
+
+    .help_nav img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .help .p_img {
+        width: 70%;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 0.2rem;
+    }
+    .help_nav{
+        position: fixed;
+        width: 100%;
+        height: 2.4rem;
+        left: 0;
+        bottom: 0;
+    }
+    .help_nav img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body id="_body" class="help">
+    <img src="plugins/help/top.png" style="width: 100%;display: block" />
+    <div class="cxt">
+        <div class="p"></div>
+        <div class="p">在工作和生活中，你是否遇到过以下烦恼？</div>
+        <div class="p">工作和生活信息碎片化，重要的事情容易忽略</div>
+        <div class="p">答应别人的事情，给忘了</div>
+        <div class="p">不知道明天应该做什么</div>
+        <div class="p">别担心，日程管理能够帮你高效完成任务、规划时间、团队协作。帮你随时随地记录并同步工作、生活中的所有任务，让你在管理和规划未来的时间中事半功倍。</div>
+    </div>
+    <div class="cxt">
+        <div class="title2">规划好所有任务</div>
+        <div class="p">你可用日程管理制定工作计划、生活计划，记录购物清单，设置生日提醒或者安排日程。便捷的设计，让你的日程待办一目了然。</div>
+        <div class="title2">强大的提醒功能</div>
+        <div class="p">你可以按周\月维度切换日历视图，查看日程安排，支持公历和节假日显示。任务可修改日期，制定合理的工作计划。</div>
+        <div class="title2">直观的日历视图</div>
+        <div class="p">你可以在按周\月维度切换日历视图，查看日程安排，支持公历和节假日显示。你也可以进行任务修改日期，制定合理的工作计划。</div>
+        <div class="title2">与同事分享日程</div>
+        <div class="p">同事之间的任务协作还是团队、合作方之间的日程计划公开，都可以在日程管理中同步。</div>
+    </div>
+    <div class="cxt">
+        <div class="title">开始使用日程管理</div>
+        <div class="title2">1.如何创建我的日程?</div>
+        <div class="p">在我的日程右侧点击“+”键，快速添加我的日程，比如工作计划、生日提醒、旅行安排、会议准备等，以便更好的规划时间和安排生活。可以对日程进行优先级排序，添加同步人员，选择是否公开；</div>
+        <img class="p_img" src="plugins/help/1.png" />
+        <div class="title2">2.我的日程list如何操作？</div>
+        <div class="p">我的日程list可以直接“打勾”标注已完成，或点击详情页进行编辑、删除、切换日期；</div>
+        <img class="p_img" src="plugins/help/2.png" />
+        <img class="p_img" src="plugins/help/3.png" />
+        <div class="title2">3.协同的任务如何分享？</div>
+        <div class="p">创建个人日程中添加同步人员，该日程会分享自对方“我的日程”中；</div>
+        <img class="p_img" src="plugins/help/4.png" />
+        <div class="title2">4.同事日程如何使用？</div>
+        <div class="p">如果你的日程需要向同事公开，在“同事日程”页点击上方“向Ta公开”按钮选择指定同事；创建日程时开启“公开日程”按钮，开启后，你创建的公开日程，指定同事在“同事日程”中可见；</div>
+        <img class="p_img" src="plugins/help/5.png" />
+        <img class="p_img" src="plugins/help/6.png" />
+        <div class="title2">5.如何操作“不看Ta的日程”？</div>
+        <div class="p">如果对向你公开日程的同事不感兴趣，可点击该同事个人主页，点击右下角“Ta向我公开”状态菜单选择“不看Ta的日程”；</div>
+        <img class="p_img" src="plugins/help/7.png" />
+        <img class="p_img" src="plugins/help/8.png" />
+        <div class="title2">6.“向Ta公开日程”和“不向Ta公开日程”</div>
+        <div class="p">同事向你公开日程你可以操作“向Ta公开日程”和“不看Ta的日程”； 如你需向同事公开日程，在“同事日程”页或在“设置”页“公开日程名单”中操作“向Ta公开日程”；向Ta公开之后若点击“不向Ta公开日程”对方看不到你的公开日程；
+        </div>
+        <img class="p_img" src="plugins/help/9.png" />
+        <br/>
+    </div>
+    <div class="help_nav"><img src="plugins/help/help_ewm.png"></div>
+</body>
+
+</html>

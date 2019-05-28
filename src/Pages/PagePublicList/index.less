@@ -1,0 +1,160 @@
+._PagePublicList {
+    display: block;
+    .tools {
+        font-size: 0;
+        height: 0.9rem;
+        .main {
+            padding: 0 0.3rem;
+            height: 0.9rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 2;
+            background: #F5F5F5;
+            .add {
+                font-family: PingFangSC-Regular;
+                font-size: 0.28rem;
+                color: #497EB7;
+                letter-spacing: 0;
+                float: left;
+                display: inline-block;
+                height: 0.9rem;
+                background: url(./images/add_eim.png) no-repeat;
+                background-position: left center;
+                background-size: 0.46rem 0.44rem;
+                line-height: 0.9rem;
+                padding-left: 0.56rem;
+            }
+            .select {
+                font-family: PingFangSC-Regular;
+                font-size: 0.28rem;
+                color: #4E4E4E;
+                letter-spacing: 0;
+                text-align: right;
+                float: right;
+                display: inline-block;
+                background: url(./images/ddrop.png) no-repeat;
+                background-position: right center;
+                background-size: 0.26rem 0.16rem;
+                line-height: 0.9rem;
+                padding-right: 0.36rem;
+            }
+        }
+    }
+    .list {
+        position: relative;
+        background: #FFF;
+        .item {
+            font-size: 0;
+            position: relative;
+            padding: 0.3rem 0 0.3rem 0.3rem;
+            overflow: hidden;
+            &::before {
+                width: 7.2rem;
+                left: auto;
+                right: 0;
+            }
+            .head {
+                width: 0.7rem;
+                height: 0.7rem;
+                border-radius: 0.04rem;
+                float: left;
+                margin-top: 0.09rem;
+            }
+            >p {
+                padding: 0;
+                margin: 0;
+                float: left;
+                width: 4rem;
+                >span {
+                    white-space: nowrap;
+                    word-break: keep-all;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-left: 0.25rem;
+                }
+                .name {
+                    font-family: PingFangSC-Regular;
+                    font-size: 0.30rem;
+                    color: #464646;
+                    letter-spacing: 0;
+                    line-height: 0.42rem;
+                    display: block;
+                }
+                .desc {
+                    font-family: PingFangSC-Regular;
+                    font-size: 0.28rem;
+                    color: #959595;
+                    margin-top: 0.06rem;
+                    display: block;
+                    line-height: 0.4rem;
+                }
+            }
+            >button {
+                position: absolute;
+                border: 1px solid #2F7DCD;
+                border-radius: 0.06 * 2rem;
+                height: 0.6*2rem;
+                width: 1.6*2rem;
+                font-family: PingFangSC-Regular;
+                font-size: 0.26*2rem;
+                color: #467DB9;
+                text-align: center;
+                transform: scale(0.5, 0.5);
+                transform-origin: 100% 0;
+                background: #FFF;
+                right: 0.3rem;
+                padding: 0;
+                top:0.43rem;
+            }
+        }
+    }
+    .no_data {
+        font-size: 0;
+        text-align: center;
+        >img {
+            width: 1.8rem;
+            height: 1.4rem;
+            margin-bottom: 0.49rem;
+            margin-top: 1.8rem;
+        }
+        >p {
+            margin: 0;
+            padding: 0;
+        }
+        .t1 {
+            font-family: PingFangSC-Regular;
+            font-size: 0.30rem;
+            color: #464646;
+            letter-spacing: 0;
+        }
+        .t2 {
+            font-family: PingFangSC-Regular;
+            font-size: 0.28rem;
+            color: #959595;
+            letter-spacing: 0;
+            margin-top: 0.1rem;
+        }
+    }
+    .aaaa {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 150%;
+        background-color: #fff;
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 8;
+            width: 100%;
+            height: 100%;
+            background: #FFF;
+            display: none;
+        }
+    }
+}

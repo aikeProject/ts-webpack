@@ -1,0 +1,8 @@
+node_modules
+.vscode
+etc
+assets/index.html
+assets/images
+assets/*.css
+assets/*.js
+package-lock.json

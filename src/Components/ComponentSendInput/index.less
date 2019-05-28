@@ -1,0 +1,72 @@
+.component-send {
+  ._send {
+    display: block;
+    position: fixed;
+    width: 7.5rem;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 8;
+  }
+
+  .send-input {
+    position: fixed;
+    bottom: 0;
+    min-height: 1.28rem;
+    width: 7.5rem;
+    background: #FAFAFA;
+    display: flex;
+    box-sizing: border-box;
+    padding: .2rem .3rem;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+
+    .input-text {
+      width: 6rem;
+      min-height: .86rem;
+      box-sizing: border-box;
+      padding: .22rem .3rem;
+      border-radius: .43rem;
+      font-size: .3rem;
+      letter-spacing: 0;
+      -webkit-user-select: auto;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      max-height: 1.64rem;
+      overflow-y: auto;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .send-btn {
+      font-size: .3rem;
+      color: #4577AD;
+      letter-spacing: 0;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .edit-wrapper {
+      background: #F5F5F5;
+      border-radius: .43rem;
+    }
+  }
+
+  .pos_top {
+    position: fixed;
+    bottom: 0;
+    width: 7.5rem;
+    z-index: 9;
+    background: #fff;
+  }
+
+  .placeholder-txt {
+    color: #CCCCCC;
+    font-size: 0.28rem;
+    width: 5.3rem;
+    position: absolute;
+    top: .42rem;
+    left: .6rem;
+  }
+}
