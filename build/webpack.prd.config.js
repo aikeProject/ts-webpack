@@ -21,7 +21,7 @@ module.exports = webpackMerge(webpackDevConfig, {
                         loader: MiniCssExtractPlugin.loader,
                     },
                     {
-                        loader: "css-loader",
+                        loader: "happypack/loader?id=happy-css",
                     },
                     {
                         loader: "postcss-loader",
@@ -110,11 +110,10 @@ module.exports = webpackMerge(webpackDevConfig, {
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
-            // filename: devMode ? '[name].css' : '[name].[hash].css',
-            // chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
             filename: 'all.[contenthash:8].css',
             chunkFilename: 'all.[contenthash:8].css'
         }),
+        utils.createHappyPlugin('happy-css', ['css-loader']),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: cssnano,

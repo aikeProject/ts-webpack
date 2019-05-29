@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const utils = require("./utils");
 const devMode = process.env.NODE_ENV !== 'production';
 
@@ -17,6 +18,7 @@ module.exports = {
             },
             {
                 test: /\.tsx?$/,
+                exclude: /node_modules/,
                 use: [
                     {loader: 'happypack/loader?id=happy-babel'},
                     {loader: 'awesome-typescript-loader'},
@@ -44,6 +46,16 @@ module.exports = {
                 babelrc: true,
                 cacheDirectory: true // 启用缓存
             }
+        }]),
+        new webpack.DllReferencePlugin({
+            manifest: require("./react.dll.manifest.json")
+        }),
+        new AddAssetHtmlPlugin([{ // 往html中注入dll js
+            publicPath: "/dll",  // 注入到html中的路径
+            outputPath: "dll", // 最终输出的目录
+            filepath: utils.resolve('dll/*.js'),
+            includeSourcemap: false,
+            typeOfAsset: "js" // options js、css; default js
         }]),
         new webpack.NamedModulesPlugin(),
     ],
