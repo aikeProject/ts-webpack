@@ -12,15 +12,17 @@
     [
       "@babel/transform-runtime",
       {
-        "regenerator": false,
-        "useESModules": true,
-        "corejs": 3,
-        "loose": false
+        "corejs": 3
       }
     ]
   ],
   "presets": [
-    "@babel/preset-env",
+    [
+      "@babel/preset-env",
+      {
+        "modules": "commonjs"
+      }
+    ],
     "@babel/preset-react"
   ]
 }
