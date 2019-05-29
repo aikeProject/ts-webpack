@@ -29,7 +29,7 @@ module.exports = webpackMerge(webpackDevConfig, {
                         loader: 'style-loader',
                     },
                     {
-                        loader: "css-loader",
+                        loader: "happypack/loader?id=happy-css",
                     },
                     {
                         loader: "postcss-loader",
@@ -56,6 +56,9 @@ module.exports = webpackMerge(webpackDevConfig, {
             }
         ],
     },
+    plugins: [
+        utils.createHappyPlugin('happy-css', ['css-loader']),
+    ],
     devServer: {
         historyApiFallback: true,
         port: 7000,

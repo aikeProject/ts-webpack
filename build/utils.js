@@ -1,5 +1,9 @@
 var http = require("http");
 var url = require("url");
+var path = require("path");
+const os = require("os");
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
 
 // 不打包到公共包
 var noModules = ['@babel/runtime-corejs3', '@babel/runtime'];
@@ -127,5 +131,16 @@ module.exports = {
         }
         http.createServer(server).listen(port);
         console.log('server run at :' + port);
+    },
+    resolve: function (dir) {
+        return path.join(__dirname, '..', dir);
+    },
+    createHappyPlugin: function (id, loaders) {
+        return new HappyPack({
+            id: id,
+            loaders: loaders,
+            threadPool: happyThreadPool,
+            verbose: process.env.HAPPY_VERBOSE === '1' // make happy more verbose with HAPPY_VERBOSE=1
+        });
     }
-}
+};

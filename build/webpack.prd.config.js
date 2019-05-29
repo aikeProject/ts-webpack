@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpackDevConfig = require("./webpack.base.config");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const dependencies = require("../package").dependencies;
 const utils = require("./utils");
 
@@ -48,9 +49,24 @@ module.exports = webpackMerge(webpackDevConfig, {
         ],
     },
     optimization: {
-        // runtimeChunk: {
-        //     name: 'manifest'
-        // },
+        minimizer: [
+            // 多进程压缩
+            new ParallelUglifyPlugin({
+                cacheDir: '.cache/',
+                uglifyJS: {
+                    output: {
+                        comments: false,
+                        beautify: false
+                    },
+                    compress: {
+                        warnings: false,
+                        drop_console: true,
+                        collapse_vars: true,
+                        reduce_vars: true
+                    }
+                }
+            }),
+        ],
         splitChunks: {
             chunks: 'async',
             minSize: 30000,
