@@ -11,13 +11,13 @@ const cssnano = require('cssnano');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const utils = require("./utils");
 const webpackDevConfig = require("./webpack.base.config");
+const config = require('./config.js');
 
-module.exports = webpackMerge(webpackDevConfig, {
+const webpackPrdConfig = webpackMerge(webpackDevConfig, {
     mode: 'production',
     module: {
         rules: [
             {
-
                 test: /\.less$/,
                 use: [
                     {
@@ -58,7 +58,9 @@ module.exports = webpackMerge(webpackDevConfig, {
                 cacheDir: '.cache/',
                 uglifyJS: {
                     output: {
+                        // 不需格式化
                         comments: false,
+                        // 不保留注释
                         beautify: false
                     },
                     compress: {
@@ -139,3 +141,29 @@ module.exports = webpackMerge(webpackDevConfig, {
         ],
     },
 });
+
+if (config.build.productionGzip) {
+    // 添加gzip压缩插件
+    const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
+    webpackPrdConfig.plugins.push(
+        new CompressionWebpackPlugin({
+            // 压缩后文件名
+            filename: '[path].gz[query]',
+            //  算法
+            algorithm: 'gzip',
+            // 针对文件的正则表达式规则，符合规则的文件被压缩
+            test: new RegExp(
+                '\\.(' +
+                config.build.productionGzipExtensions.join('|') +
+                ')$'
+            ),
+            // 文件大于这个值会被压缩
+            threshold: 10240,
+            // 压缩率
+            minRatio: 0.8
+        })
+    );
+}
+
+module.exports = webpackPrdConfig;

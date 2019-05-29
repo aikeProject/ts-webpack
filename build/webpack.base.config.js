@@ -8,11 +8,10 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 // 注入编译好的‘dll’文件
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 
-// 编译结果分析
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const utils = require("./utils");
+const config = require('./config');
 
-module.exports = {
+const base = {
     module: {
         rules: [
             {
@@ -66,8 +65,7 @@ module.exports = {
             includeSourcemap: false,
             typeOfAsset: "js" // options js、css; default js
         }]),
-        new webpack.NamedModulesPlugin(),
-        new BundleAnalyzerPlugin()
+        new webpack.NamedModulesPlugin()
     ],
     optimization: {
         minimizer: [
@@ -101,3 +99,11 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     }
 };
+
+if (config.base.analyzerReport) {
+    // 编译结果分析
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+    base.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports = base;
