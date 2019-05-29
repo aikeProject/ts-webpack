@@ -2,6 +2,7 @@ var http = require("http");
 var url = require("url");
 var path = require("path");
 const os = require("os");
+// HappyPack 实现并发编译，提升 loader 的解析速度
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
 

@@ -1,10 +1,16 @@
-const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 压缩js代码
+// webpack-parallel-uglify-plugin 能够把任务分解给多个子进程去并发的执行，
+// 子进程处理完后再把结果发送给主进程，从而实现并发编译，进而大幅提升js压缩速度
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+
+// 注入编译好的‘dll’文件
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+
+// 编译结果分析
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const utils = require("./utils");
-const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     module: {
@@ -48,20 +54,25 @@ module.exports = {
             }
         }]),
         new webpack.DllReferencePlugin({
-            manifest: require("./react.dll.manifest.json")
+            manifest: require("../dll/react.dll.manifest.json")
         }),
-        new AddAssetHtmlPlugin([{ // 往html中注入dll js
-            publicPath: "/dll",  // 注入到html中的路径
-            outputPath: "dll", // 最终输出的目录
+        // 往html中注入dll js
+        new AddAssetHtmlPlugin([{
+            // 注入到html中的路径
+            publicPath: "/dll",
+            // 最终输出的目录
+            outputPath: "dll",
             filepath: utils.resolve('dll/*.js'),
             includeSourcemap: false,
             typeOfAsset: "js" // options js、css; default js
         }]),
         new webpack.NamedModulesPlugin(),
+        new BundleAnalyzerPlugin()
     ],
     optimization: {
         minimizer: [
-            new ParallelUglifyPlugin({ // 多进程压缩
+            // 多进程压缩
+            new ParallelUglifyPlugin({
                 cacheDir: '.cache/',
                 uglifyJS: {
                     output: {

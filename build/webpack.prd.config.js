@@ -1,13 +1,16 @@
 const path = require("path");
 const webpackMerge = require("webpack-merge");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+// 将css从js中分割成独立文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpackDevConfig = require("./webpack.base.config");
+
+// 压缩css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
-const dependencies = require("../package").dependencies;
 const utils = require("./utils");
+const webpackDevConfig = require("./webpack.base.config");
 
 module.exports = webpackMerge(webpackDevConfig, {
     mode: 'production',
@@ -75,11 +78,15 @@ module.exports = webpackMerge(webpackDevConfig, {
             maxInitialRequests: 3,
             name: false,
             cacheGroups: {
-                // default: { // 模块缓存规则，设置为false，默认缓存组将禁用
-                //     minChunks: 2, // 模块被引用>=2次，拆分至vendors公共模块
-                //     priority: -20, // 优先级
-                //     reuseExistingChunk: true, // 默认使用已有的模块
-                // },
+                // 模块缓存规则，设置为false，默认缓存组将禁用
+                default: {
+                    // 模块被引用>=2次，拆分至vendors公共模块
+                    minChunks: 2,
+                    // 优先级
+                    priority: -20,
+                    // 默认使用已有的模块
+                    reuseExistingChunk: true,
+                },
                 // 打包node_modules中的文件
                 vendor: {
                     name: "vendor",
@@ -87,24 +94,21 @@ module.exports = webpackMerge(webpackDevConfig, {
                     chunks: "all",
                     // 优先级
                     priority: 10
-                },
-                // 打包业务中公共代码
-                common: {
-                    minChunks: 2, // 模块被引用>=2次，拆分至vendors公共模块
-                    priority: -20, // 优先级
-                    reuseExistingChunk: true, // 默认使用已有的模块
                 }
             }
         }
     },
     plugins: [
-        // new UglifyJSPlugin(),
         new CleanWebpackPlugin(
-            ['assets/*.js', 'assets/*.css', 'assets/images/**', 'assets/index.html'],　 //匹配删除的文件
+            // 匹配删除的文件
+            ['assets/*.js', 'assets/*.css', 'assets/images/**', 'assets/index.html'],
             {
-                root: path.join(__dirname, '../'),       　　　　　　　　　　//根目录
-                verbose: true,        　　　　　　　　　　//开启在控制台输出信息
-                dry: false        　　　　　　　　　　//启用删除文件
+                // 根目录
+                root: path.join(__dirname, '../'),
+                // 开启在控制台输出信息　　　　　　　　　　
+                verbose: true,
+                // 启用删除文件　　　　　　　　　　
+                dry: false
             }
         ),
         new MiniCssExtractPlugin({

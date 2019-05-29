@@ -8,8 +8,10 @@
 const webpack = require("webpack");
 const path = require('path');
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+
 // dll文件存放的目录
 const dllPath = path.resolve(__dirname, "../dll");
+const utils = require('./utils.js');
 
 module.exports = {
     entry: {
@@ -29,7 +31,7 @@ module.exports = {
         new webpack.DllPlugin({
             name: "_dll_[name]",
             // manifest.json 描述动态链接库包含了哪些内容
-            path: path.join(__dirname, "./", "[name].dll.manifest.json")
+            path: utils.resolve("dll/[name].dll.manifest.json")
         }),
     ],
 };

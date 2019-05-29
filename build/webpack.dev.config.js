@@ -3,6 +3,7 @@ const webpackMerge = require("webpack-merge");
 const webpackDevConfig = require("./webpack.base.config");
 const utils = require("./utils");
 
+// mock数据 本地服务
 utils.runServer(7008);
 
 module.exports = webpackMerge(webpackDevConfig, {
