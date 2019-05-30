@@ -1,10 +1,6 @@
 const path = require("path");
 const webpackMerge = require("webpack-merge");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
-// 将css从js中分割成独立文件
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
 // 压缩css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
@@ -91,7 +87,7 @@ const webpackPrdConfig = webpackMerge(webpackDevConfig, {
                 to: utils.resolve('assets'),
             }
         ]),
-        utils.createHappyPlugin('happy-css', ['css-loader']),
+        utils.createHappyPlugin('happy-css', ['css-loader'])
     ],
     output: {
         path: path.join(__dirname, "../assets"),

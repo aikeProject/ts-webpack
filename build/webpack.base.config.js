@@ -15,6 +15,7 @@ const utils = require("./utils");
 const config = require('./config');
 
 const env = process.env.NODE_ENV === 'production' || false;
+const publicPath = env ? config.build.assetsPublicPath : config.dev.assetsPublicPath;
 
 const base = {
     entry: {
@@ -49,6 +50,9 @@ const base = {
                         loader: 'style-loader',
                     }) : ({
                         loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: publicPath
+                        }
                     }),
                     {
                         loader: "happypack/loader?id=happy-css",
@@ -91,7 +95,8 @@ const base = {
             template: utils.resolve('public/index.html'),
             filename: './index.html',
             showErrors: !env,
-            minify: env
+            minify: env,
+            BASE_URL: publicPath
         }),
         utils.createHappyPlugin('happy-babel', [{
             loader: 'babel-loader',
@@ -106,7 +111,7 @@ const base = {
         // 往html中注入dll js
         new AddAssetHtmlPlugin([{
             // 注入到html中的路径
-            publicPath: env ? config.build.assetsPublicPath + "dll" : config.dev.assetsPublicPath + "dll",
+            publicPath: publicPath + "dll",
             // 最终输出的目录
             outputPath: "dll",
             filepath: utils.resolve('dll/*.js'),

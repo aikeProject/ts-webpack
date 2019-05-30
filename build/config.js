@@ -46,7 +46,7 @@ module.exports = {
     },
     build: {
         // cdn
-        assetsPublicPath: 'https://www.jianjian.work/',
+        assetsPublicPath: '',
 
         // gzip压缩 默认关闭
         productionGzip: false,
