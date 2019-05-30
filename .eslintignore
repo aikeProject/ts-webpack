@@ -2,3 +2,5 @@ build
 webpack*
 assets
 third
+public
+dll

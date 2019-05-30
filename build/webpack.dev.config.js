@@ -2,84 +2,38 @@ const path = require("path");
 const webpackMerge = require("webpack-merge");
 const webpackDevConfig = require("./webpack.base.config");
 const utils = require("./utils");
+const config = require("./config");
 
 // mock数据 本地服务
-utils.runServer(7008);
+utils.runServer(config.dev.mockPort);
 
 module.exports = webpackMerge(webpackDevConfig, {
     mode: 'development',
-    entry: {
-        app: [
-            './src/index',
-        ],
-    },
-    output: {
-        path: path.join(__dirname, "../assets"),
-        filename: "bundle.[hash:8].js"
-    },
     devtool: 'eval-source-map',
-    module: {
-        rules: [
-            {
-                test: /\.less$/,
-                use: [
-                    {
-                        loader: 'css-hot-loader',
-                    },
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: "happypack/loader?id=happy-css",
-                    },
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            plugins: (loader) => [
-                                require('autoprefixer')({
-                                    browsers: [
-                                        "iOS >= 7",
-                                        "Firefox >= 20",
-                                        "Android > 4",
-                                        "Firefox ESR",
-                                        '> 5%'
-                                    ], //适配到浏览器最新的几个版本
-                                    cascade: false,
-                                    remove: true //是否去掉不必要的前缀 默认：true
-                                }),
-                            ]
-                        }
-                    },
-                    {
-                        loader: "less-loader",
-                    },
-                ]
-            }
-        ],
+    output: {
+        path: config.base.assetsRoot,
+        filename: "[name].[hash:8].js",
+        publicPath: config.dev.assetsPublicPath
     },
     plugins: [
-        utils.createHappyPlugin('happy-css', ['css-loader']),
+        utils.createHappyPlugin('happy-css', [{
+            loader: 'css-loader',
+            // options: {
+            //     css modules
+            // importLoaders: 1,
+            // modules: true,
+            // localIdentName: '[local]__[hash:7]'
+            // }
+        }]),
     ],
     devServer: {
         historyApiFallback: true,
-        port: 7000,
-        host: '0.0.0.0',
+        port: config.dev.port || 7000,
+        host: config.dev.host || 'localhost',
         // hot: true,
         inline: true,
-        contentBase: path.join(__dirname, "../assets"),
-        proxy: {
-            '/proxy': {
-                target: 'http://127.0.0.1:7008',
-                changeOrigin: true
-            },
-            '/remote': {
-                target: 'https://sit3.jianjian.work',
-                changeOrigin: true,
-                secure: false,
-                pathRewrite: {
-                    '^/remote': ''
-                }
-            },
-        }
+        open: config.dev.autoOpenBrowser || false,
+        contentBase: utils.resolve('public'),
+        proxy: config.dev.proxy || {}
     },
 });

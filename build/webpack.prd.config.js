@@ -9,48 +9,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const utils = require("./utils");
 const webpackDevConfig = require("./webpack.base.config");
 const config = require('./config.js');
 
 const webpackPrdConfig = webpackMerge(webpackDevConfig, {
     mode: 'production',
-    module: {
-        rules: [
-            {
-                test: /\.less$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                    },
-                    {
-                        loader: "happypack/loader?id=happy-css",
-                    },
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            plugins: (loader) => [
-                                require('autoprefixer')({
-                                    browsers: [
-                                        "iOS >= 7",
-                                        "Firefox >= 20",
-                                        "Android > 4",
-                                        "Firefox ESR",
-                                        '> 5%'
-                                    ], //适配到浏览器最新的几个版本
-                                    cascade: false,
-                                    remove: true //是否去掉不必要的前缀 默认：true
-                                }),
-                            ]
-                        }
-                    },
-                    {
-                        loader: "less-loader",
-                    },
-                ]
-            }
-        ],
-    },
     optimization: {
         minimizer: [
             // 多进程压缩
@@ -71,6 +36,15 @@ const webpackPrdConfig = webpackMerge(webpackDevConfig, {
                     }
                 }
             }),
+            // 压缩css
+            new OptimizeCssAssetsPlugin({
+                assetNameRegExp: /\.css$/g,
+                cssProcessor: cssnano,
+                cssProcessorPluginOptions: {
+                    preset: ['default', {discardComments: {removeAll: true}}],
+                },
+                canPrint: true
+            })
         ],
         splitChunks: {
             chunks: 'async',
@@ -85,7 +59,7 @@ const webpackPrdConfig = webpackMerge(webpackDevConfig, {
                     // 模块被引用>=2次，拆分至vendors公共模块
                     minChunks: 2,
                     // 优先级
-                    priority: -20,
+                    priority: 5,
                     // 默认使用已有的模块
                     reuseExistingChunk: true,
                 },
@@ -103,42 +77,27 @@ const webpackPrdConfig = webpackMerge(webpackDevConfig, {
     plugins: [
         new CleanWebpackPlugin(
             // 匹配删除的文件
-            ['assets/*.js', 'assets/*.css', 'assets/images/**', 'assets/index.html'],
+            ['assets/*'],
             {
                 // 根目录
                 root: path.join(__dirname, '../'),
                 // 开启在控制台输出信息　　　　　　　　　　
-                verbose: true,
-                // 启用删除文件　　　　　　　　　　
-                dry: false
+                verbose: false
             }
         ),
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: 'all.[contenthash:8].css',
-            chunkFilename: 'all.[contenthash:8].css'
-        }),
+        new CopyPlugin([
+            {
+                from: utils.resolve('public'),
+                to: utils.resolve('assets'),
+            }
+        ]),
         utils.createHappyPlugin('happy-css', ['css-loader']),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.css$/g,
-            cssProcessor: cssnano,
-            cssProcessorPluginOptions: {
-                preset: ['default', {discardComments: {removeAll: true}}],
-            },
-            canPrint: true
-        })
     ],
     output: {
         path: path.join(__dirname, "../assets"),
         filename: "[name].[chunkhash:8].js",
-        chunkFilename: "[name].[chunkhash:8].js"
-    },
-    entry: {
-        // vendor: utils.objToList(dependencies),
-        app: [
-            './src/index',
-        ],
+        chunkFilename: "[name].[chunkhash:8].js",
+        publicPath: config.build.assetsPublicPath
     },
 });
 

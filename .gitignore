@@ -1,10 +1,7 @@
 node_modules
 .vscode
 etc
-assets/index.html
-assets/images
-assets/*.css
-assets/*.js
+assets
 package-lock.json
 .cache
 *.gz

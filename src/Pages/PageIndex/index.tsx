@@ -8,6 +8,7 @@ import Footer from '../../Components/Footer/index';
 import PullUpLoading from '../../Components/ComponentPullUpLoading';
 //Modules
 //Less
+// import test from './index.less';
 import './index.less';
 //interface
 import {} from '../../Interface/interface';
@@ -496,6 +497,7 @@ class Page extends Action {
         const activeClassR = page === '1' ? ' active' : '';
         return (
             <div className="_PageIndex">
+                {/*<div className={test.test}>test css modules</div>*/}
                 {(() => {
                     if (userId == 0) {
                         return (

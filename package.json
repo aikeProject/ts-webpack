@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config=build/webpack.dev.config --hot --progress --inline",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config=build/webpack.dev.config --hot --progress --inline",
     "dll": "webpack --mode production --config build/webpack.dll.config.js --progress --inline",
-    "build": "webpack --config=build/webpack.prd.config --progress --inline",
-    "build:2": "node build/build.js",
+    "build": "cross-env NODE_ENV=production webpack --config=build/webpack.prd.config --progress --inline",
+    "build:build": "cross-env NODE_ENV=production node build/build.js",
+    "build:progress": "npm run build:build --report",
     "start": "npm run dev",
-    "start:report": "npm run dev",
+    "start:report": "npm run dev --report",
     "eslint": "eslint src --ext .ts,.tsx,.js",
     "fixlint": "eslint --fix src --ext .ts,.tsx,.js",
-    "dev2": "webpack-dev-server --hot",
     "copy": "xcopy /s/y/i/f E:\\PROJECT\\master_schedule\\assets E:\\git\\su-static\\schedule",
     "del": "del E:\\git\\su-static\\schedule\\* /q",
     "release": "npm run build && npm run del && npm run copy"
@@ -24,7 +24,6 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime-corejs3": "^7.4.5",
     "@types/classnames": "^2.2.7",
     "@types/jquery": "^3.3.2",
     "@types/node": "^12.0.2",
@@ -42,6 +41,8 @@
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^0.1.19",
     "compression-webpack-plugin": "^2.0.0",
+    "copy-webpack-plugin": "^5.0.3",
+    "cross-env": "^5.2.0",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
@@ -79,6 +80,7 @@
     "webpack-parallel-uglify-plugin": "^1.1.0"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.4.5",
     "dayjs": "^1.8.12",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
