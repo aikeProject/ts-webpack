@@ -1,29 +1,87 @@
-#### 项目运行
--   `启动` `npm run start`
--   `打包` `npm run build`
--   `代码检查` `npm run eslint`
+##### webpack 配置
 
-#### 开发日志
+- 升级 webpack4
 
-##### `日程管理` 3.0开发 （开发人：成雨）
--   主要开发功能 `任务` 模块的，新增，修改，查看
--   项目升级 添加`plugin-transform-runtime`和`@babel/runtime`，因为`Babel`默认只转换新的 JavaScript 语法，而不转换新的 API,
-    例如，Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise 等全局对象，以及一些定义在全局对象上的方法
-    （比如 Object.assign）都不会转译。引入这两个包就是为了支持这些新特性。
-    注意：`@babel/runtime`不能作为公共模块打包。凯哥为我们写的项目默认是把`dependencies`的包都做为公共模块。所以有一点修改
-    ```js
-    // 文件 build/utils.js
-    {
-        objToList: function (obj) {
-            let list = [];
-            for (let key in obj) {
-                // @babel/runtime 不能作为公共模块打包
-                 if (key !== '@babel/runtime') {
-                      list.push(key);
-                 }
-            }
-            return list;
-        }
-    }
-    ```
--   `dayjs` 处理时间 大小`2kb`
+- 运行之前先执行
+
+```
+npm run dll
+```
+- 将一些基本不变的包事先打包好，直接引用
+
+- 开发运行
+
+```
+npm start
+```
+
+- 生产打包
+
+```
+npm run build:build
+```
+
+- 依赖包分析
+
+```
+开发运行
+npm run start:report
+
+生成运行
+npm run build:progress
+```
+
+- 目录结构
+
+```
+|-- .babelrc
+    |-- .eslintignore
+    |-- .eslintrc.js
+    |-- .gitignore
+    |-- package.json
+    |-- README.md
+    |-- tsconfig.json typescript 配置文件
+    |-- .cache
+    |-- assets webpack 打包出口
+    |-- build  webpack 配置文件目录
+    |   |-- build.js 
+    |   |-- config.js  webpack 参数配置文件
+    |   |-- mymock.js  mock 数据文件
+    |   |-- utils.js   
+    |   |-- webpack.base.config.js 基础配置
+    |   |-- webpack.dev.config.js  开发配置
+    |   |-- webpack.dll.config.js  dll配置
+    |   |-- webpack.prd.config.js  生产配置
+    |-- dll
+    |-- public 不参与打包的静态文件目录
+    |   |-- index.html html模版
+    |-- source  
+    |   |-- dll.png
+    |   |-- happypack.png
+    |   |-- ParallelUglifyPlugin.png
+    |   |-- ParallelUglifyPlugin2.png
+    |   |-- Snipaste_2019-05-29_13-01-04.png
+    |-- src 项目开发文件夹
+    |   |-- App.less
+    |   |-- App.tsx
+    |   |-- index.tsx webpack打包入口文件
+    |   |-- Common
+    |   |   |-- Constans.ts
+    |   |   |-- global.d.ts typescript 配置文件
+    |   |   |-- util.ts
+    |   |-- Components 组件
+    |   |   |-- .gitkeep
+    |   |-- images 
+    |   |-- Interface
+    |   |   |-- interface.tsx
+    |   |-- Modules
+    |   |   |-- .gitkeep
+    |   |-- Pages 
+    |   |   |-- Empty
+    |   |   |   |-- action.tsx
+    |   |   |   |-- index.less
+    |   |   |   |-- index.tsx
+    |   |   |   |-- interface.tsx
+    |   |   |   |-- images
+    |   |   |       |-- test.png
+```
